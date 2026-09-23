@@ -1,1 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Kishore Kumar — medical imaging and generative AI researcher at IIT Madras.">
+<title>Kishore Kumar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>/* ==========================================================================
+   Kishore M — personal site
+   Style adapted from the "neon glass" template, simplified for easy reading.
+   To change colours, edit the variables below.
+   ========================================================================== */
+
+:root {
+    --bg: #08070d;
+    --bg-raised: #0f0e18;
+    --line: rgba(255, 255, 255, 0.07);
+    --line-strong: rgba(255, 255, 255, 0.14);
+
+    --indigo: #6366f1;
+    --indigo-soft: rgba(99, 102, 241, 0.14);
+    --cyan: #06b6d4;
+    --cyan-soft: rgba(6, 182, 212, 0.12);
+
+    --text: #f1f3f9;
+    --muted: #9aa3b8;
+    --dim: #5b6479;
+
+    --font-heading: 'Outfit', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'Fira Code', ui-monospace, Menlo, Consolas, monospace;
+
+    --nav-h: 64px;
+    --radius: 14px;
+    color-scheme: dark;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+
+body {
+    background: var(--bg);
+    /* one soft, static glow instead of the template's animated blobs */
+    background-image:
+        radial-gradient(ellipse 60% 40% at 0% 0%, rgba(99, 102, 241, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 100% 10%, rgba(6, 182, 212, 0.10), transparent 70%);
+    background-repeat: no-repeat;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+.wrap { width: 100%; max-width: 960px; margin-inline: auto; padding-inline: 20px; }
+
+/* ---------- Navigation ---------- */
+.nav {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 50;
+    background: rgba(8, 7, 13, 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+}
+.nav .wrap { height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+
+.logo { font-family: var(--font-mono); font-weight: 500; font-size: 1rem; white-space: nowrap; }
+.logo span { color: var(--cyan); }
+
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.04); }
+.nav-links a.active { color: var(--text); background: var(--indigo-soft); }
+
+.menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--text);
+    font: 500 0.85rem var(--font-body);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 760px) {
+    .menu-btn { display: block; }
+    .nav-links {
+        position: absolute;
+        top: var(--nav-h);
+        left: 0; right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 20px 16px;
+        background: var(--bg-raised);
+        border-bottom: 1px solid var(--line);
+    }
+    .nav-links:not(.open) { display: none; }
+    .nav-links a { padding: 12px; font-size: 1rem; }
+}
+
+/* ---------- Sections ---------- */
+section { padding-block: 72px; border-top: 1px solid var(--line); }
+section.hero { border-top: 0; padding-block: 88px 64px; }
+
+.section-title { font-size: 1.75rem; margin-bottom: 8px; }
+.section-lead { color: var(--muted); max-width: 60ch; margin-bottom: 32px; }
+
+.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--cyan);
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+}
+
+/* ---------- Hero ---------- */
+.hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin-bottom: 12px; }
+.gradient {
+    background: linear-gradient(120deg, var(--text) 20%, var(--indigo) 60%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero .role { font-family: var(--font-heading); font-size: 1.25rem; color: var(--muted); margin-bottom: 20px; }
+.hero .intro { max-width: 62ch; color: var(--muted); margin-bottom: 32px; }
+.hero .intro strong { color: var(--text); font-weight: 600; }
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 500; font-size: 0.95rem;
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--line-strong);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--muted); }
+.btn-primary { background: linear-gradient(135deg, var(--indigo), var(--cyan)); border-color: transparent; color: #fff; }
+.btn-primary:hover { box-shadow: 0 6px 24px rgba(99, 102, 241, 0.45); border-color: transparent; }
+
+/* ---------- Cards / lists ---------- */
+.card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--line-strong); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    padding: 3px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+}
+
+/* Hero facts row */
+.facts { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.9rem; }
+.facts strong { color: var(--text); font-family: var(--font-heading); font-weight: 600; }
+
+.nav-links a.nav-cta { color: var(--cyan); }
+.nav-links a.nav-cta.active { color: var(--text); }
+
+/* Research areas */
+.areas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.area { display: flex; flex-direction: column; gap: 10px; }
+.area-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--cyan); }
+.area h3 { font-size: 1.15rem; }
+.area p { color: var(--muted); font-size: 0.95rem; }
+.area p.area-out { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font-size: 0.85rem; color: var(--text); }
+
+/* Skills */
+.skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 40px; }
+.skill-group h3 { font-size: 0.8rem; font-family: var(--font-body); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin-bottom: 12px; }
+.tag.hl { color: var(--text); border-color: rgba(99, 102, 241, 0.55); background: var(--indigo-soft); }
+
+/* Timeline (experience + education) */
+.timeline { display: grid; gap: 16px; }
+.entry { display: grid; grid-template-columns: 170px 1fr; gap: 24px; }
+.entry .when { font-family: var(--font-mono); font-size: 0.8rem; color: var(--cyan); padding-top: 4px; font-variant-numeric: tabular-nums; }
+.entry h3 { font-size: 1.15rem; }
+.entry .where { color: var(--muted); font-size: 0.95rem; margin-bottom: 12px; }
+.entry ul { display: grid; gap: 6px; margin-bottom: 14px; }
+.entry li { color: var(--muted); padding-left: 16px; position: relative; max-width: 68ch; }
+.entry .summary { color: var(--muted); max-width: 72ch; }
+.entry li::before { content: "›"; position: absolute; left: 0; color: var(--indigo); }
+
+/* Projects grid */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.project { display: flex; flex-direction: column; gap: 10px; }
+.project .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.project h3 { font-size: 1.15rem; }
+.project .kind { font-size: 0.75rem; font-weight: 500; color: var(--cyan); background: var(--cyan-soft); padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.project p { color: var(--muted); font-size: 0.95rem; flex: 1; }
+.link { font-size: 0.9rem; color: var(--text); border-bottom: 1px solid var(--indigo); align-self: flex-start; }
+
+/* Publications list */
+.pubs { list-style: none; }
+.pub { padding-block: 20px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 80px 1fr; gap: 20px; }
+.pub:first-child { border-top: 1px solid var(--line); }
+.pub .venue { font-family: var(--font-mono); color: var(--cyan); font-size: 0.8rem; line-height: 1.4; padding-top: 3px; }
+.pub .ptitle { display: block; font-weight: 500; max-width: 70ch; margin-bottom: 8px; transition: color 0.2s; }
+.pub .ptitle:hover { color: var(--cyan); }
+.pub .ptitle::after { content: " ↗"; color: var(--dim); }
+.role-badge { font-size: 0.75rem; color: var(--muted); border: 1px solid var(--line-strong); padding: 2px 10px; border-radius: 999px; }
+.role-badge.first { color: var(--text); background: var(--indigo-soft); border-color: rgba(99, 102, 241, 0.55); }
+
+/* Contact */
+.contact-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.contact-list .card { display: flex; align-items: center; justify-content: center; padding: 18px; }
+.contact-list .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); }
+.contact-list .value { font-weight: 500; word-break: break-word; }
+.contact-list a.card:hover .value { color: var(--cyan); }
+.location { margin-top: 20px; color: var(--dim); font-size: 0.9rem; }
+
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--dim); font-size: 0.85rem; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 760px) {
+    section { padding-block: 56px; }
+    section.hero { padding-block: 56px 48px; }
+    .areas, .grid-2, .skills-grid { grid-template-columns: 1fr; gap: 24px; }
+    .entry { grid-template-columns: 1fr; gap: 6px; }
+    .pub { grid-template-columns: 1fr; gap: 6px; }
+    .pub .venue br { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<!--
+  HOW TO EDIT
+  Each section is marked with a comment. To add another paper / job / project,
+  copy one block and edit the text.
+-->
+
+<header class="nav">
+    <div class="wrap">
+        <a href="#top" class="logo">kishore<span>@</span>iitm</a>
+        <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+        <nav class="nav-links" id="nav-links">
+            <a href="#research">Research</a>
+            <a href="#publications">Publications</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#contact" class="nav-cta">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main id="top">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+        <div class="wrap">
+            <p class="eyebrow">M.S. Scholar · Electrical Engineering · IIT Madras</p>
+            <h1>Hi, I'm <span class="gradient">Kishore Kumar</span></h1>
+            <p class="role">Medical imaging &amp; generative AI researcher</p>
+            <p class="intro">
+                I build deep learning methods for <strong>medical image synthesis, segmentation and computational pathology</strong> —
+                from diffusion models that generate contrast-enhanced prostate MRI without contrast agents, to
+                whole-slide image analysis for brain histopathology. Currently a Project Engineer at the
+                <strong>Sudha Gopalakrishnan Brain Centre, IIT Madras</strong>.
+            </p>
+            <div class="actions">
+                <a href="mailto:ee23s054@smail.iitm.ac.in" class="btn btn-primary">Email me</a>
+                <a href="#publications" class="btn">Publications</a>
+                <a href="#contact" class="btn" target="_blank" rel="noopener">CV (PDF)</a>
+            </div>
+            <ul class="facts">
+                <li><strong>5</strong> publications · 2 first-author</li>
+                <li><strong>5+ yrs</strong> in medical imaging research</li>
+                <li>MIDL · CVPR-W · ICCV-W · ICASSP · EMBC</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===================== RESEARCH ===================== -->
+    <section id="research">
+        <div class="wrap">
+            <h2 class="section-title">Research</h2>
+            <p class="section-lead">The problems I work on, and where each one has taken me.</p>
+            <div class="areas">
+                <article class="area card">
+                    <p class="area-tag">MRI · Generative models</p>
+                    <h3>Contrast-free DCE-MRI synthesis</h3>
+                    <p>Synthesising early and late dynamic contrast-enhanced prostate MRI from routine non-contrast sequences, using GAN, transformer and residual diffusion models.</p>
+                    <p class="area-out">5 papers · MIDL 2026, CVPR-W 2024</p>
+                </article>
+                <article class="area card">
+                    <p class="area-tag">Digital pathology · WSI</p>
+                    <h3>Brain histopathology analysis</h3>
+                    <p>Tile-level classification and spatial segmentation of whole-slide images; benchmarking pathology foundation models (UNI, GigaPath) and fusing their embeddings.</p>
+                    <p class="area-out">Ongoing · SGBC, IIT Madras</p>
+                </article>
+                <article class="area card">
+                    <p class="area-tag">CT · MRA · Segmentation</p>
+                    <h3>3D anatomical segmentation</h3>
+                    <p>Vertebral instance segmentation from CT for pedicle-screw planning (14 vertebrae, VerSe 2019), and cerebral vessel segmentation from MRA for stroke CFD studies.</p>
+                    <p class="area-out">Deployed as Docker microservices</p>
+                </article>
+                <article class="area card">
+                    <p class="area-tag">Restoration · Translation</p>
+                    <h3>Diffusion-based image restoration</h3>
+                    <p>Reproduced ResShift super-resolution and extended it to face restoration and T2 MRI deblurring; RGB-to-thermal translation with an edge-aware InfraGAN.</p>
+                    <p class="area-out">Project work · IIT Madras coursework</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PUBLICATIONS ===================== -->
+    <section id="publications">
+        <div class="wrap">
+            <h2 class="section-title">Publications</h2>
+            <p class="section-lead">Peer-reviewed papers on contrast-enhanced prostate MRI synthesis.</p>
+            <ol class="pubs">
+                <li class="pub">
+                    <div class="venue">MIDL<br>2026</div>
+                    <div>
+                        <a class="ptitle" href="https://proceedings.mlr.press/v315/kumar26a.html" target="_blank" rel="noopener">ResDCE-diff: Dynamic Contrast Enhanced MRI Translation in Prostate Cancer Using Residual Denoising Diffusion Models</a>
+                        <span class="role-badge first">First author</span>
+                    </div>
+                </li>
+                <li class="pub">
+                    <div class="venue">ICCV-W<br>2025</div>
+                    <div>
+                        <a class="ptitle" href="https://ieeexplore.ieee.org/document/11374599" target="_blank" rel="noopener">DCEtriformer: A Hybrid Attention Transformer for DCE-MRI Synthesis in Prostate Imaging</a>
+                        <span class="role-badge">Co-author</span>
+                    </div>
+                </li>
+                <li class="pub">
+                    <div class="venue">EMBC<br>2025</div>
+                    <div>
+                        <a class="ptitle" href="https://ieeexplore.ieee.org/document/11251784" target="_blank" rel="noopener">MPM-DCE: Multi-stage Progressive Mechanism for Early and Late DCE Prostate MRI Synthesis</a>
+                        <span class="role-badge">Co-author</span>
+                    </div>
+                </li>
+                <li class="pub">
+                    <div class="venue">ICASSP<br>2025</div>
+                    <div>
+                        <a class="ptitle" href="https://arxiv.org/abs/2502.02555" target="_blank" rel="noopener">AAD-DCE: An Aggregated Multimodal Attention Mechanism for Early and Late Dynamic Contrast Enhanced Prostate MRI Synthesis</a>
+                        <span class="role-badge">Co-author</span>
+                    </div>
+                </li>
+                <li class="pub">
+                    <div class="venue">CVPR-W<br>2024</div>
+                    <div>
+                        <a class="ptitle" href="https://ieeexplore.ieee.org/document/10678359" target="_blank" rel="noopener">DCE-diff: Diffusion Model for Synthesis of Early and Late Dynamic Contrast-Enhanced MR Images from Non-Contrast Multimodal Inputs</a>
+                        <span class="role-badge first">First author</span>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section id="experience">
+        <div class="wrap">
+            <h2 class="section-title">Experience</h2>
+            <p class="section-lead">Research engineering roles at IIT Madras since 2021.</p>
+            <div class="timeline">
+                <article class="entry card">
+                    <div class="when">Jul 2025 – Present</div>
+                    <div>
+                        <h3>Project Engineer</h3>
+                        <p class="where">Sudha Gopalakrishnan Brain Centre, IIT Madras</p>
+                        <p class="summary">Building whole-slide image classification and segmentation pipelines for brain histopathology, benchmarking foundation models (UNI, GigaPath).<br>Leading a team on interactive WSI analysis plugins and built an MRA vessel segmentation pipeline for stroke CFD studies.</p>
+                    </div>
+                </article>
+                <article class="entry card">
+                    <div class="when">Mar 2023 – Jul 2025</div>
+                    <div>
+                        <h3>Project Engineer</h3>
+                        <p class="where">Healthcare Technology Innovation Centre (HTIC), IIT Madras</p>
+                        <p class="summary">Drove research on synthesising contrast-enhanced prostate MRI from non-contrast sequences using GAN and diffusion models.<br>Mentored 3 research scholars, leading to 2 first-author and 3 co-author papers.</p>
+                    </div>
+                </article>
+                <article class="entry card">
+                    <div class="when">Apr 2021 – Jan 2023</div>
+                    <div>
+                        <h3>Project Assistant</h3>
+                        <p class="where">Healthcare Technology Innovation Centre (HTIC), IIT Madras</p>
+                        <p class="summary">Developed vertebral instance segmentation from CT for computer-assisted pedicle screw placement.<br>Built a 3D→2D→3D inference pipeline and shipped it as Docker microservices.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section id="skills">
+        <div class="wrap">
+            <h2 class="section-title">Skills</h2>
+            <p class="section-lead">What I use day to day.</p>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h3>Machine learning &amp; AI</h3>
+                    <div class="tags">
+                        <span class="tag hl">Diffusion models</span><span class="tag hl">GANs</span><span class="tag">Generative AI</span>
+                        <span class="tag">Computer vision</span><span class="tag">Image-to-image translation</span>
+                        <span class="tag">Representation learning</span><span class="tag">Transfer learning</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Medical imaging</h3>
+                    <div class="tags">
+                        <span class="tag hl">Image synthesis</span><span class="tag hl">Segmentation</span><span class="tag">Registration</span>
+                        <span class="tag">Digital pathology / WSI</span><span class="tag">Vessel segmentation</span><span class="tag">2D→3D reconstruction</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Frameworks</h3>
+                    <div class="tags">
+                        <span class="tag hl">PyTorch</span><span class="tag">MONAI</span><span class="tag">HuggingFace</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h3>Languages &amp; tools</h3>
+                    <div class="tags">
+                        <span class="tag hl">Python</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">scikit-learn</span>
+                        <span class="tag">SimpleITK</span><span class="tag">NiBabel</span><span class="tag">3D Slicer</span>
+                        <span class="tag">Docker</span><span class="tag">Git</span><span class="tag">Linux</span><span class="tag">TensorBoard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== EDUCATION ===================== -->
+    <section id="education">
+        <div class="wrap">
+            <h2 class="section-title">Education</h2>
+            <p class="section-lead">Degrees and key coursework.</p>
+            <div class="timeline">
+                <article class="entry card">
+                    <div class="when">2024 – Present</div>
+                    <div>
+                        <h3>M.S., Electrical Engineering</h3>
+                        <p class="where">Indian Institute of Technology Madras · CGPA 8.0 / 10</p>
+                        <div class="tags">
+                            <span class="tag">Deep Learning for Imaging</span><span class="tag">Advances in AI</span>
+                            <span class="tag">Computational Photography</span><span class="tag">Data Science: Theory &amp; Practice</span>
+                            <span class="tag">Biomedical Electronic Systems</span>
+                        </div>
+                    </div>
+                </article>
+                <article class="entry card">
+                    <div class="when">Graduated 2020</div>
+                    <div>
+                        <h3>B.E.</h3>
+                        <p class="where">Sri Ramakrishna Engineering College, Coimbatore · CGPA 7.0 / 10</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+        <div class="wrap">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-lead">Open to research collaborations and conversations about medical imaging. Email is the quickest way to reach me.</p>
+            <div class="contact-list">
+                <a class="card" href="mailto:ee23s054@smail.iitm.ac.in">
+                    <span class="value">Email ↗</span>
+                </a>
+                <a class="card" href="https://linkedin.com/in/kishorekumar-2507/" target="_blank" rel="noopener">
+                    <span class="value">LinkedIn ↗</span>
+                </a>
+                <a class="card" href="https://github.com/kishore-kk-25" target="_blank" rel="noopener">
+                    <span class="value">GitHub ↗</span>
+                </a>
+            </div>
+            <p class="location">Based in Chennai, Tamil Nadu</p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>© <span id="year">2026</span> Kishore Kumar</span>
+        <a href="#top">Back to top ↑</a>
+    </div>
+</footer>
+
+<script>// Mobile menu toggle
+const menuBtn = document.getElementById('menu-btn');
+const navLinks = document.getElementById('nav-links');
+
+menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+    menuBtn.textContent = open ? 'Close' : 'Menu';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = 'Menu';
+    });
+});
+
+// Highlight the nav link for the section currently on screen
+const links = [...navLinks.querySelectorAll('a')];
+const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+
+function updateActive() {
+    const y = window.scrollY + window.innerHeight * 0.35;
+    let current = null;
+    sections.forEach((s, i) => { if (s && s.offsetTop <= y) current = i; });
+    links.forEach((a, i) => a.classList.toggle('active', i === current));
+}
+window.addEventListener('scroll', updateActive, { passive: true });
+updateActive();
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
 
